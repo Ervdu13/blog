@@ -1,0 +1,46 @@
+<div class="container mt-5">
+    <div class="col-12 col-md-12">
+        <div class="card">
+            <div class="card-header bg-dark text-light">
+                Saisie d'une catégorie
+            </div>
+            <div class="card-body">
+
+                <?php if (count($error) != 0 ): ?>
+                    <div class="alert alert-danger" role="alert">
+                        <?php foreach ($error as $value) : ?>
+                            <p><?= $value ?></p>
+                        <?php endforeach ?>
+                    </div>
+                <?php endif ?>
+
+
+                <form enctype="multipart/form-data" method="post" action="addCateg.php">
+                    <div class="form-group">
+                        <label for="titre">Nom de la catégorie</label>
+                        <input type="text" class="form-control" id="category" name="category" aria-describedby="category" required value="<?= $category; ?>">
+                    </div>
+                    <div class="form-group">
+                        <label for="desc">Description</label>
+                        <textarea class="form-control" id="desc" name="desc"><?= $description; ?></textarea>
+                    </div>
+                    <div class="form-group">
+                        <label for="parentcateg">Catégorie "parent" ?</label>
+                        <select class="parentcateg" id="parentcateg" name="parentcateg">
+                            <option value ="aucun">aucune</option>
+                            <?php foreach ($categories as $value) : ?> 
+                                <option value ="<?= $value['name'] ?>"><?= $value['name'] ?></option>
+                            <?php endforeach ?>
+                        </select>
+                    </div> 
+                    <div class="form-group">
+                        <label for="titre">Position par rapport au parent</label>
+                        <input type="text" class="form-control" id="order" name="order" aria-describedby="order" value="<?= $category; ?>">
+
+                    <input type="submit" class="btn btn-primary">
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+

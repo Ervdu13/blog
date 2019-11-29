@@ -1,0 +1,63 @@
+<div class="container mt-5">
+    <h1>Liste des utilisateurs</h1>
+    <a href="addUser.php" type="button" class="btn btn-primary">Ajouter un utilisateur</a>
+    <table class="table table-striped table-dark mt-4">
+        <thead>
+            <tr>
+                <th scope="col">Pseudo</th>
+                <th scope="col">Email</th>
+                <th scope="col">Rôle</th> 
+                <th scope="col">Nom</th>
+                <th scope="col">Prénom</th>
+                <th scope="col">Dernier login</th>
+                <th class="w-25">Avatar</th>
+                <th scope="col">Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            <!-- Création de la liste -->
+            <?php $index = 1 ?>
+            <?php foreach ($users as $value) : ?>
+                <tr>
+                    <td scope="col"><?= $value['username'] ?></td>
+                    <td scope="col"><?= $value['email'] ?></td>
+                    <td scope="col"><?= $value['role'] ?></td>
+                    <td scope="col"><?= $value['firstname'] ?></td>
+                    <td scope="col"><?= $value['lastname'] ?></td>
+                    <td scope="col"><?= $value['last_login'] ?></td>
+                    <td scope="col"><a href="#"><img src="<?= $value['avatar'] ?>" class="img-thumbnail img-fluid" data-toggle="modal" data-target="<?= '#img' . $index ?>"></a></td>
+                    <td scope="col">
+                        <a href="#" data-id="<?= $index ?>"><i class="fas fa-edit"></i></a>
+                        <a href="#" data-id="<?= $index ?>"><i class="fas fa-trash-alt"></i></a>
+                    </td>
+                </tr>
+
+                <?php $index++ ?>
+
+            <?php endforeach ?>
+
+        </tbody>
+    </table>
+
+    <!-- création du lien Modal pour chaque avatar -->
+    <?php $index = 1 ?>
+    <?php foreach ($users as $value) : ?>
+        <div class="modal fade" id="<?= 'img' . $index ?>" tabindex="-1" role="dialog" aria-labelledby="<?= 'img' . $index ?>" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLabel">avatar</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <img class="img-fluid" src="<?= $value['avatar'] ?>">
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <?php $index++ ?>
+
+    <?php endforeach ?>

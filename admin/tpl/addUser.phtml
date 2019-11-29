@@ -1,0 +1,66 @@
+<div class="container mt-5">
+    <div class="col-12 col-md-12">
+        <div class="card">
+            <div class="card-header bg-dark text-light">
+                Saisie d'un utilisateur
+            </div>
+            <div class="card-body">
+
+                <?php if (count($error) != 0 ): ?>
+                    <div class="alert alert-danger" role="alert">
+                        <?php foreach ($error as $value) : ?>
+                            <p><?= $value ?></p>
+                        <?php endforeach ?>
+                    </div>
+                <?php endif ?>
+
+
+                <form enctype="multipart/form-data" method="post" action="addUser.php">
+                    <div class="form-group">
+                        <label for="titre">Utilisateurs</label>
+                        <input type="text" class="form-control" id="username" name="username" aria-describedby="username" required value="<?= $username; ?>">
+                    </div>
+                    <div class="form-group">
+                        <label for="email">Votre email</label>
+                        <input type="email" class="form-control" id="email" name="email" aria-describedby="email" required value="<?= $email; ?>">
+                    </div>
+                    <div class="form-group">
+                        <label for="password">Saisissez votre mot de passe</label>
+                        <input type="password" class="form-control" id="password" name="password" required value="<?= $password; ?>">
+                    </div>
+                    <div class="form-group">
+                        <label for="password">Confirmez votre mot de passe</label>
+                        <input type="password" class="form-control" id="conf-password" name="confPassword" required value="<?= $password; ?>">
+                    </div>
+                    <div class="form-group">
+                        <label for="firstname">Nom</label>
+                        <input type="text" class="form-control" id="firstname" name="firstname" aria-describedby="firstname" value="<?= $firstname; ?>">
+                    </div>
+                    <div class="form-group">
+                        <label for="lastname">Prénom</label>
+                        <input type="text" class="form-control" id="lastname" name="lastname" aria-describedby="lastname" value="<?= $lastname; ?>">
+                    </div>
+                    <div class="form-group">
+                        <label for="bio">Biographie</label>
+                        <textarea class="form-control" id="bio" name="bio"><?= $bio; ?></textarea>
+                    </div>
+                    <div class="form-group">
+                        <label for="role">Role</label>
+                        <select class="role" id="role" name="role">
+                            <option value ="ROLE_ADMIN"  <?= ($role == ROLE_ADMIN) ? 'selected':''?>>Administrateur</option>
+                            <option value ="ROLE_AUTHOR" <?= ($role == ROLE_AUTHOR) ? 'selected':''?>>Auteur</option>
+                            <option value ="ROLE_USER"  <?= ($role == ROLE_USER) ? 'selected':''?>>Utilisateur</option>
+                        </select>
+                    </div> 
+                    <input type="hidden" name="MAX_FILE_SIZE" value="30000" />
+                    <div class="form-group">
+                        <label for="avatar">Avatar</label>
+                        <input type="file" class="form-control" id="avatar" name="avatar" aria-describedby="avatar" value="<?= $avatar; ?>">
+                    </div>
+                    <input type="submit" class="btn btn-primary">
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
